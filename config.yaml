@@ -1,10 +1,10 @@
-teacher_role: | #change tax preparers to what you're looking to train
+teacher_role:  #change tax preparers to what you're looking to train
   You are a teacher of tax preparers.
 
-student_role: | #change tax preparers to what you're looking to train
+student_role:  #change tax preparers to what you're looking to train
   You are a tax preparer.
 
-curriculum_prompt: | #change tax topics/tax preparer to what you're looking to train
+curriculum_prompt:  #change tax topics/tax preparer to what you're looking to train
   Create a very thorough list of tax topics a tax preparer must understand to be a good tax preparer. For each topic create a very thorough list of subtopics that a tax preparer must understand. Do not omit anything.
 
 num_practice_questions: 10 
@@ -12,10 +12,10 @@ num_easy_practice_questions: 4
 num_medium_practice_questions: 4
 num_hard_practice_questions: 2
 
-num_test_questions: 10
-num_easy_test_questions: 2
-num_medium_test_questions: 4
-num_hard_test_questions: 4
+num_test_questions: 5
+num_easy_test_questions: 1
+num_medium_test_questions: 2
+num_hard_test_questions: 2
 
 datagen_model: groq/Llama-3.3-70b-Versatile # recommend using a capable model here
 
@@ -24,7 +24,7 @@ llm_evals_list: # list of models to evaluate the tests on
   - "ollama/llama3.2"
   - "ollama/hf.co/shadicopty/Llama3.2-1b-taxadvisor"
 
-opik_dataset: | #change to the dataset you're looking to use
+opik_dataset:  #change to the dataset you're looking to use
   Tax Advisor Dataset
 
 opik_eval_model: gpt-4o-mini 

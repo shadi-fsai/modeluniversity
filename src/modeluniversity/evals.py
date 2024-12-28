@@ -75,7 +75,7 @@ def evaluation_task(dataset_item):
     print(colored("Evaluating question: " + input, "green"))
     (correct_choice, answer_choices) = create_answer_choices(dataset_item["answer"], dataset_item["wrong_answer1"], dataset_item["wrong_answer2"], dataset_item["wrong_answer3"])
     precontext = config['student_role']
-    prompt = "What is the correct answer for the following multi-choice(A/B/C/D) question:" + input + "\n" + answer_choices + "\n Return one letter only as the answer. For example: A\n" 
+    prompt = "What is the letter (A/B/C/D) describing the correct answer for the following multi-choice question:{" + input + "\n" + answer_choices + "\n } Respond only with one letter only. For example: E\n" 
     answer = question_prompt_call(prompt)
     result = {
         "input": prompt,
