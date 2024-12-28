@@ -20,8 +20,8 @@ num_hard_test_questions: 4
 datagen_model: groq/Llama-3.3-70b-Versatile # recommend using a capable model here
 
 llm_evals_list: # list of models to evaluate the tests on
-  - "ollama/hf.co/shadicopty/Llama3.2-1b-taxadvisor"
   - "groq/llama-3.2-1b-preview"
+  - "ollama/hf.co/shadicopty/Llama3.2-1b-taxadvisor"
   - "groq/Llama-3.3-70b-Versatile"
   - "gpt-4o-mini"
   - "gemini/gemini-1.5-flash"
