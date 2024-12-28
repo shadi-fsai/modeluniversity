@@ -96,7 +96,7 @@ def main():
 
     metrics = [Equals()]
     global my_model
-    for llm in [config['llm_evals_list']]:
+    for llm in config['llm_evals_list']:
         my_model = llm
         eval_results = evaluate(
             experiment_name="my_evaluation:" + llm,
