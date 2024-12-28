@@ -1,6 +1,7 @@
 from time import sleep
 from litellm import completion
 from litellm import RateLimitError
+import yaml
 from termcolor import colored
 import json
 from pydantic import BaseModel
@@ -9,8 +10,7 @@ from typing import List
 import dotenv
 dotenv.load_dotenv()
 
-my_model = "groq/Llama-3.3-70b-Versatile"
-my_api_base = None 
+config = None
 
 class TopicSchema(BaseModel):
     topic: str
@@ -26,11 +26,11 @@ def generate_cirriculum():
             print(colored("Loaded cirriculum from cirriculum.json", "green"))
     except FileNotFoundError:
 
-        prompt = "Create a verythorough list of tax topics a tax preparer must understand to be a good tax preparer. For each topic create a very thorough list of subtopics that a tax preparer must understand. Do not omit anything."
+        prompt = config['cirriculum_prompt']
         response = completion(
-                    model=my_model,
+                    model=config['datagen_model'],
                     messages=[
-                        {"role": "system", "content": "You are a teacher of tax preparers."},
+                        {"role": "system", "content": config['teacher_role']},
                         {"role": "user", "content": prompt}
                     ],
                     response_format=CirriculumSchema,
@@ -51,22 +51,33 @@ class SingleQuestionSchema(BaseModel):
     correct_answer: str
     explanation: str
 
-class QuestionsSchema(BaseModel):
+class TrainQuestionsSchema(BaseModel):
     questions: List[SingleQuestionSchema]
 
-def question_prompt_call(prompt):
+class MultiAnswerQuestionSchema(BaseModel):
+    question: str
+    correct_answer: str
+    wrong_answer1: str
+    wrong_answer2: str
+    wrong_answer3: str
+    explanation: str
+
+class TestQuestionsSchema(BaseModel):
+    questions: List[MultiAnswerQuestionSchema]
+
+def question_prompt_call(prompt, schema):
     retries = 0
     while retries < 5:
         try:
             response = completion(
-                model=my_model,
+                model=config['datagen_model'],
                 messages=[
-                    {"role": "system", "content": "You are a teacher of tax preparers."},
+                    {"role": "system", "content": config['teacher_role'] },
                     {"role": "user", "content": prompt}
                 ],
                 temperature=0,
                 max_tokens=4096,
-                response_format=QuestionsSchema
+                response_format=schema
             )
             return response['choices'][0]['message']['content']
         except RateLimitError as e:
@@ -81,8 +92,8 @@ testing_questions_bank = []
 def generate_questions(cirriculum):
     for topic in cirriculum['topics']:
         for subtopic in topic['subtopics']:
-            prompt = f"Create 10 practice questions and answers for the topic {topic['topic']} subtopic: {subtopic}. 4 easy, 4 medium, 2 hard."
-            training_questions = json.loads(question_prompt_call(prompt))
+            prompt = f"Create {config['num_practice_questions']} practice questions and answers for the topic {topic['topic']} subtopic: {subtopic}. {config['num_easy_practice_questions']} easy, {config['num_medium_practice_questions']} medium, {config['num_hard_practice_questions']} hard."
+            training_questions = json.loads(question_prompt_call(prompt, TrainQuestionsSchema))
             print (colored(f"Training questions for subtopic: {subtopic}", "green"))
 
             with open('training_questions.json', 'a') as file:
@@ -97,10 +108,10 @@ def generate_questions(cirriculum):
             
             questions_list = [q['question'] for q in training_questions['questions']]
 
-            prompt = f"Create 10 test questions for  the topic {topic['topic']} subtopic: {subtopic}. 2 easy, 4 medium, 4 hard. \n"+\
+            prompt = f"Create {config['num_test_questions']} multi-answer test questions for the topic {topic['topic']} subtopic: {subtopic}. {config['num_easy_test_questions']} easy, {config['num_medium_test_questions']} medium, {config['num_hard_test_questions']} hard. \n"+\
                 "avoid repeating any of these questions:" + str(questions_list)
             
-            test_questions = json.loads(question_prompt_call(prompt))
+            test_questions = json.loads(question_prompt_call(prompt, TestQuestionsSchema))
             print (colored(f"Test questions for subtopic: {subtopic}", "green"))
 
             with open('test_questions.json', 'a') as file:
@@ -110,6 +121,9 @@ def generate_questions(cirriculum):
                         "subtopic": subtopic,
                         "question": question['question'],
                         "answer": question['correct_answer'],
+                        "wrong_answer1": question['wrong_answer1'],
+                        "wrong_answer2": question['wrong_answer2'],
+                        "wrong_answer3": question['wrong_answer3'],
                         "explanation": question['explanation']
                     }))
 
@@ -123,13 +137,17 @@ def generate_questions(cirriculum):
 
 
 def main():
+    global config
+    with open('config.yaml', 'r') as file:
+        config = yaml.safe_load(file.read())
     cirriculum = generate_cirriculum()
     generate_questions(cirriculum)
+
 
 def create_conversation(sample):
   return {
     "messages": [
-      {"role": "system", "content": "You are a tax preparer."},
+      {"role": "system", "content": config['student_role']},
       {"role": "user", "content": "Answer the following question and add an explanation in the format 'ANSWER. My explanation: EXPLANATION': " + str(sample["question"])},
       {"role": "assistant", "content": str(sample["answer"]) + ". My explanation: " + str(sample["explanation"])}
     ]
