@@ -1,0 +1,145 @@
+{
+    "topics": [
+        {
+            "topic": "Individual Taxation",
+            "subtopics": [
+                "Tax Filing Status",
+                "Exemptions",
+                "Standard Deduction",
+                "Itemized Deductions",
+                "Tax Credits",
+                "Capital Gains and Losses",
+                "Investment Income",
+                "Self-Employment Income",
+                "Rental Income",
+                "Tax Planning Strategies"
+            ]
+        },
+        {
+            "topic": "Business Taxation",
+            "subtopics": [
+                "Sole Proprietorships",
+                "Partnerships",
+                "S Corporations",
+                "C Corporations",
+                "Limited Liability Companies",
+                "Business Income",
+                "Business Deductions",
+                "Depreciation and Amortization",
+                "Business Tax Credits",
+                "Employment Taxes"
+            ]
+        },
+        {
+            "topic": "Tax Accounting",
+            "subtopics": [
+                "Cash Method of Accounting",
+                "Accrual Method of Accounting",
+                "Hybrid Method of Accounting",
+                "Accounting Periods",
+                "Accounting Methods",
+                "Inventory Valuation",
+                "Cost of Goods Sold",
+                "Depreciation and Amortization"
+            ]
+        },
+        {
+            "topic": "Tax Audits and Appeals",
+            "subtopics": [
+                "Audit Process",
+                "Audit Procedures",
+                "Appeals Process",
+                "Tax Court",
+                "Collection Procedures",
+                "Penalties and Interest",
+                "Reasonable Cause",
+                "Audit Techniques"
+            ]
+        },
+        {
+            "topic": "Tax Planning and Strategy",
+            "subtopics": [
+                "Tax Savings Strategies",
+                "Retirement Planning",
+                "Estate Planning",
+                "Gift Tax Planning",
+                "Charitable Giving",
+                "Tax Deferral Strategies",
+                "Tax Minimization Strategies"
+            ]
+        },
+        {
+            "topic": "International Taxation",
+            "subtopics": [
+                "Foreign Earned Income",
+                "Foreign Tax Credits",
+                "Foreign Account Reporting",
+                "FBAR",
+                "FATCA",
+                "International Tax Treaties",
+                "Transfer Pricing",
+                "Value-Added Tax"
+            ]
+        },
+        {
+            "topic": "Employment Taxation",
+            "subtopics": [
+                "Payroll Taxes",
+                "Employment Tax Deposits",
+                "Employment Tax Returns",
+                "W-2 and W-4 Forms",
+                "Social Security and Medicare Taxes",
+                "Unemployment Taxes",
+                "Workers Compensation"
+            ]
+        },
+        {
+            "topic": "Gift and Estate Taxation",
+            "subtopics": [
+                "Gift Tax",
+                "Estate Tax",
+                "Generation-Skipping Transfer Tax",
+                "Gift Tax Returns",
+                "Estate Tax Returns",
+                "Estate Planning Strategies",
+                "Trusts and Estates"
+            ]
+        },
+        {
+            "topic": "Tax Law and Procedure",
+            "subtopics": [
+                "Tax Code",
+                "Regulations",
+                "Case Law",
+                "Administrative Procedures",
+                "Tax Court Procedures",
+                "Appeals Procedures",
+                "Tax Practice and Procedure"
+            ]
+        },
+        {
+            "topic": "Tax Software and Technology",
+            "subtopics": [
+                "Tax Preparation Software",
+                "Tax Research Software",
+                "Electronic Filing",
+                "Tax Data Security",
+                "Cloud Computing",
+                "Tax Software Integration",
+                "Tax Technology Trends"
+            ]
+        },
+        {
+            "topic": "Professional Responsibilities",
+            "subtopics": [
+                "Ethics",
+                "Professional Conduct",
+                "Client Confidentiality",
+                "Tax Preparer Responsibilities",
+                "PTIN Requirements",
+                "Continuing Education",
+                "Tax Preparer Liability"
+            ]
+        }
+    ]
+}
