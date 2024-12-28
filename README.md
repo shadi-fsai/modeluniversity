@@ -21,7 +21,7 @@ Edit config.yaml to choose the topic you want to train for, its currently set on
 
 2. 'poetry run transform_to_trainable_json' prepares the data for unsloth training
 
-3. Use this to train your 3.2 1b model and push it to huggingface: https://colab.research.google.com/drive/12RH6ojAY_TFvQ02ZLvQdjFe944o0IIDQ#scrollTo=FqfebeAdT073
+3. Use this to train your 3.2 1b model and push it to huggingface: https://colab.research.google.com/drive/12RH6ojAY_TFvQ02ZLvQdjFe944o0IIDQ
 
 4. Add your model to the list of evaluated llms in config.yaml; if you're running on ollama you'll want to download it to your desktop first (Ollama run hf.co/username/model)
 
