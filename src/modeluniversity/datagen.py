@@ -16,35 +16,35 @@ class TopicSchema(BaseModel):
     topic: str
     subtopics: List[str]
 
-class CirriculumSchema(BaseModel):
+class CurriculumSchema(BaseModel):
     topics: List[TopicSchema]
 
-def generate_cirriculum():
+def generate_curriculum():
     try:
-        with open('cirriculum.json', 'r') as file:
-            cirriculum = json.load(file)
-            print(colored("Loaded cirriculum from cirriculum.json", "green"))
+        with open('curriculum.json', 'r') as file:
+            curriculum = json.load(file)
+            print(colored("Loaded curriculum from curriculum.json", "green"))
     except FileNotFoundError:
 
-        prompt = config['cirriculum_prompt']
+        prompt = config['curriculum_prompt']
         response = completion(
                     model=config['datagen_model'],
                     messages=[
                         {"role": "system", "content": config['teacher_role']},
                         {"role": "user", "content": prompt}
                     ],
-                    response_format=CirriculumSchema,
+                    response_format=CurriculumSchema,
                     temperature=0,
                     max_tokens=4096
                 )
         
-        cirriculum_str = response['choices'][0]['message']['content']
-        cirriculum = json.loads(cirriculum_str)
-        with open('cirriculum.json', 'w') as file:
-            json.dump(cirriculum, file, indent=4)    
-            print(colored("Saved cirriculum to cirriculum.json", "green"))            
+        curriculum_str = response['choices'][0]['message']['content']
+        curriculum = json.loads(curriculum_str)
+        with open('curriculum.json', 'w') as file:
+            json.dump(curriculum, file, indent=4)    
+            print(colored("Saved curriculum to curriculum.json", "green"))            
 
-    return cirriculum
+    return curriculum
 
 class SingleQuestionSchema(BaseModel):
     question: str
@@ -89,8 +89,8 @@ def question_prompt_call(prompt, schema):
 training_questions_bank = []
 testing_questions_bank = []
 
-def generate_questions(cirriculum):
-    for topic in cirriculum['topics']:
+def generate_questions(curriculum):
+    for topic in curriculum['topics']:
         for subtopic in topic['subtopics']:
             prompt = f"Create {config['num_practice_questions']} practice questions and answers for the topic {topic['topic']} subtopic: {subtopic}. {config['num_easy_practice_questions']} easy, {config['num_medium_practice_questions']} medium, {config['num_hard_practice_questions']} hard."
             training_questions = json.loads(question_prompt_call(prompt, TrainQuestionsSchema))
@@ -140,8 +140,8 @@ def main():
     global config
     with open('config.yaml', 'r') as file:
         config = yaml.safe_load(file.read())
-    cirriculum = generate_cirriculum()
-    generate_questions(cirriculum)
+    curriculum = generate_curriculum()
+    generate_questions(curriculum)
 
 
 def create_conversation(sample):
