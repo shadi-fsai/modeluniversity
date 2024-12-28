@@ -92,9 +92,7 @@ def load_config():
 
 def main():
     load_config()
-
     dataset = setup(opik_client)
-    exit()
 
     metrics = [Equals()]
     global my_model
@@ -107,4 +105,4 @@ def main():
             scoring_metrics=metrics,
             task_threads=4,
         )
-        print(eval_results)
+    print (colored("Evaluation completed", "green"))
