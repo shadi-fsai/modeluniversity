@@ -17,8 +17,10 @@ Edit config.yaml to choose the topic you want to train for, its currently set on
 
 ## Data generation and Evals
 
-'poetry run datagen' generates the training/test data
-'poetry run transform_to_trainable_json' prepares the data for unsloth training
-'poetry run evals' runs the evaluations
+1. 'poetry run datagen' generates the training/test data
 
-Use this to train your 3.2 1b model and push it to huggingface: https://colab.research.google.com/drive/12RH6ojAY_TFvQ02ZLvQdjFe944o0IIDQ#scrollTo=FqfebeAdT073
+2. 'poetry run transform_to_trainable_json' prepares the data for unsloth training
+
+3. Use this to train your 3.2 1b model and push it to huggingface: https://colab.research.google.com/drive/12RH6ojAY_TFvQ02ZLvQdjFe944o0IIDQ#scrollTo=FqfebeAdT073
+
+4. 'poetry run evals' runs the evaluations
