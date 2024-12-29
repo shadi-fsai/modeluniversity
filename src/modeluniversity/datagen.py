@@ -92,7 +92,7 @@ testing_questions_bank = []
 def generate_questions(curriculum):
     for topic in curriculum['topics']:
         for subtopic in topic['subtopics']:
-            prompt = f"Create {config['num_practice_questions']} practice questions and answers for the topic {topic['topic']} subtopic: {subtopic}. {config['num_easy_practice_questions']} easy, {config['num_medium_practice_questions']} medium, {config['num_hard_practice_questions']} hard."
+            prompt = f"Create {config['num_practice_questions']} practice questions and answers for the topic {topic['topic']} subtopic: {subtopic}. {config['num_easy_practice_questions']} easy, {config['num_medium_practice_questions']} medium, {config['num_hard_practice_questions']} hard.  " + ("Make sure you cover the most critical concepts, add more questions if you need to." if config['practice_allow_expansion'] else "")
             training_questions = json.loads(question_prompt_call(prompt, TrainQuestionsSchema))
             print (colored(f"Training questions for subtopic: {subtopic}", "green"))
 
@@ -108,7 +108,7 @@ def generate_questions(curriculum):
             
             questions_list = [q['question'] for q in training_questions['questions']]
 
-            prompt = f"Create {config['num_test_questions']} multi-answer test questions for the topic {topic['topic']} subtopic: {subtopic}. {config['num_easy_test_questions']} easy, {config['num_medium_test_questions']} medium, {config['num_hard_test_questions']} hard. \n"+\
+            prompt = f"Create {config['num_test_questions']} multi-answer test questions for the topic {topic['topic']} subtopic: {subtopic}. {config['num_easy_test_questions']} easy, {config['num_medium_test_questions']} medium, {config['num_hard_test_questions']} hard.  " + ("Make sure you cover the most critical concepts, add more questions if you need to. " if config['test_allow_expansion'] else "") + "\n"+\
                 "avoid repeating these exact questions, its ok to test the same concepts with different questions:" + str(questions_list)
             
             test_questions = json.loads(question_prompt_call(prompt, TestQuestionsSchema))
@@ -136,10 +136,13 @@ def generate_questions(curriculum):
         print(colored("Saved test questions to test_questions.json", "green"))
 
 
-def main():
+def setup_config():
     global config
-    with open('config.yaml', 'r') as file:
-        config = yaml.safe_load(file.read())
+    with open('config.yaml') as file:
+        config = yaml.load(file, Loader=yaml.FullLoader)
+
+def main():
+    setup_config()
     curriculum = generate_curriculum()
     generate_questions(curriculum)
 
@@ -154,6 +157,7 @@ def create_conversation(sample):
   }
 
 def transform_to_trainable_json():
+    setup_config()
     with open("test_questions.json", "r") as file:
         data = json.load(file)
         conversations = []
