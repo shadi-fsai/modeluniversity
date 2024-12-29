@@ -69,7 +69,7 @@ def question_prompt_call(prompt):
                     {"role": "user", "content": prompt}
                 ],
                 temperature=0,
-                max_tokens=1024
+                max_tokens=256
             )
 
             return response['choices'][0]['message']['content'] 
@@ -97,7 +97,7 @@ def evaluation_task(dataset_item):
     print(colored("Evaluating question: " + input, "green"))
     (correct_choice, answer_choices) = create_answer_choices(dataset_item["answer"], dataset_item["wrong_answer1"], dataset_item["wrong_answer2"], dataset_item["wrong_answer3"])
     precontext = config['student_role']
-    prompt = "What is the letter (A/B/C/D) describing the correct answer for the following multi-choice question:{" + input + "\n" + answer_choices + "\n } Respond first with one letter followed by an explanation why you chose it over other answers. For example: {E. becaues this answer included more complete information about the topic}\n" 
+    prompt = "What is the letter (A/B/C/D) describing the correct answer for the following multi-choice question:{" + input + "\n" + answer_choices + "\n } Respond first with ONE LETTER picking the answer, followed by an explanation why you chose it over other answers. For example: E. because this answer included more complete information about the topic.\n" 
     answer = question_prompt_call(prompt)
     result = {
         "input": prompt,
