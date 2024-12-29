@@ -4,6 +4,9 @@ import yaml
 from opik import Opik
 from opik.evaluation import evaluate
 from opik.evaluation.metrics import Equals
+from typing import Any
+from opik.evaluation.metrics import base_metric, score_result
+
 
 from litellm import RateLimitError
 from litellm import completion
@@ -18,6 +21,25 @@ dotenv.load_dotenv()
 
 opik_client = Opik()
 my_model = ""
+
+class SameFirstLetterMetric(base_metric.BaseMetric):
+    def __init__(self, name: str):
+        self.name = name
+
+    def score(self, output: str, reference:str, **ignored_kwargs: Any):
+        # Add you logic here
+        if output[0] == reference[0]:
+            return score_result.ScoreResult(
+                value=1,
+                name=self.name,
+                reason="Output first letter: " + output[0] + " matches reference first letter: " + reference[0]
+            )
+        else:
+            return score_result.ScoreResult(
+                value=0,
+                name=self.name,
+                reason="Output first letter: " + output[0] + " does not match reference first letter: " + reference[0]
+            )
 
 def setup(client):
     # Create a dataset
@@ -47,7 +69,7 @@ def question_prompt_call(prompt):
                     {"role": "user", "content": prompt}
                 ],
                 temperature=0,
-                max_tokens=1
+                max_tokens=1024
             )
 
             return response['choices'][0]['message']['content'] 
@@ -75,7 +97,7 @@ def evaluation_task(dataset_item):
     print(colored("Evaluating question: " + input, "green"))
     (correct_choice, answer_choices) = create_answer_choices(dataset_item["answer"], dataset_item["wrong_answer1"], dataset_item["wrong_answer2"], dataset_item["wrong_answer3"])
     precontext = config['student_role']
-    prompt = "What is the letter (A/B/C/D) describing the correct answer for the following multi-choice question:{" + input + "\n" + answer_choices + "\n } Respond only with one letter only. For example: E\n" 
+    prompt = "What is the letter (A/B/C/D) describing the correct answer for the following multi-choice question:{" + input + "\n" + answer_choices + "\n } Respond first with one letter followed by an explanation why you chose it over other answers. For example: {E. becaues this answer included more complete information about the topic}\n" 
     answer = question_prompt_call(prompt)
     result = {
         "input": prompt,
@@ -94,7 +116,7 @@ def main():
     load_config()
     dataset = setup(opik_client)
 
-    metrics = [Equals()]
+    metrics = [SameFirstLetterMetric("Multiple-choice match")]
     global my_model
     for llm in config['llm_evals_list']:
         my_model = llm

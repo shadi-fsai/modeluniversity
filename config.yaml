@@ -23,6 +23,8 @@ llm_evals_list: # list of models to evaluate the tests on
   - "groq/Llama-3.3-70b-Versatile"
   - "ollama/llama3.2"
   - "ollama/hf.co/shadicopty/Llama3.2-1b-taxadvisor"
+  - "ollama/llama3.2:3b-instruct-fp16"
+  - "ollama/hf.co/shadicopty/Llama3.2-3b-taxadvisor"
 
 opik_dataset:  #change to the dataset you're looking to use
   Tax Advisor Dataset

@@ -1,0 +1,146 @@
+{
+    "topics": [
+        {
+            "topic": "Income Tax",
+            "subtopics": [
+                "W-2 income",
+                "1099 income",
+                "self-employment income",
+                "investment income",
+                "taxable income",
+                "non-taxable income",
+                "income tax brackets",
+                "tax withholding",
+                "estimated tax payments",
+                "tax credits for income"
+            ]
+        },
+        {
+            "topic": "Deductions and Credits",
+            "subtopics": [
+                "standard deduction",
+                "itemized deductions",
+                "mortgage interest deduction",
+                "charitable donation deduction",
+                "medical expense deduction",
+                "state and local tax deduction",
+                "earned income tax credit",
+                "child tax credit",
+                "education credits",
+                "retirement savings credits"
+            ]
+        },
+        {
+            "topic": "Tax Filing Status",
+            "subtopics": [
+                "single filing status",
+                "married filing jointly",
+                "married filing separately",
+                "head of household",
+                "qualifying widow(er)",
+                "dependent exemptions",
+                "personal exemptions"
+            ]
+        },
+        {
+            "topic": "Dependents and Exemptions",
+            "subtopics": [
+                "qualifying child",
+                "qualifying relative",
+                "dependent exemption",
+                "child tax credit",
+                "earned income tax credit",
+                "dependent care credit"
+            ]
+        },
+        {
+            "topic": "Business Income and Expenses",
+            "subtopics": [
+                "business income",
+                "business expenses",
+                "self-employment tax",
+                "home office deduction",
+                "business use of car",
+                "meals and entertainment expenses",
+                "travel expenses",
+                "business credit cards and loans"
+            ]
+        },
+        {
+            "topic": "Investments and Retirement",
+            "subtopics": [
+                "capital gains and losses",
+                "dividend income",
+                "interest income",
+                "retirement account contributions",
+                "retirement account distributions",
+                "required minimum distributions",
+                "IRA and 401(k) rules"
+            ]
+        },
+        {
+            "topic": "Tax Audits and Notices",
+            "subtopics": [
+                "tax audit process",
+                "tax notice response",
+                "tax audit representation",
+                "tax penalty abatement",
+                "tax interest abatement",
+                "tax audit appeals"
+            ]
+        },
+        {
+            "topic": "Tax Planning and Strategy",
+            "subtopics": [
+                "tax planning for individuals",
+                "tax planning for businesses",
+                "tax strategy for investments",
+                "tax strategy for retirement",
+                "tax strategy for estate planning",
+                "tax strategy for charitable giving"
+            ]
+        },
+        {
+            "topic": "Tax Law and Updates",
+            "subtopics": [
+                "Tax Cuts and Jobs Act",
+                "Affordable Care Act",
+                "tax law changes",
+                "tax regulation updates",
+                "tax court decisions",
+                "IRS guidance and announcements"
+            ]
+        },
+        {
+            "topic": "Client Communication and Management",
+            "subtopics": [
+                "client intake and engagement",
+                "client communication and correspondence",
+                "client data management",
+                "client confidentiality and privacy",
+                "client conflict resolution"
+            ]
+        },
+        {
+            "topic": "Tax Preparation Software and Technology",
+            "subtopics": [
+                "tax preparation software",
+                "electronic filing",
+                "tax document management",
+                "tax calculation and review",
+                "tax software updates and training"
+            ]
+        },
+        {
+            "topic": "Professional Ethics and Standards",
+            "subtopics": [
+                "tax preparer ethics",
+                "tax preparer standards",
+                "IRS Circular 230",
+                "PTIN requirements",
+                "continuing education requirements",
+                "professional certification and credentials"
+            ]
+        }
+    ]
+}

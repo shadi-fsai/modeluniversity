@@ -109,7 +109,7 @@ def generate_questions(curriculum):
             questions_list = [q['question'] for q in training_questions['questions']]
 
             prompt = f"Create {config['num_test_questions']} multi-answer test questions for the topic {topic['topic']} subtopic: {subtopic}. {config['num_easy_test_questions']} easy, {config['num_medium_test_questions']} medium, {config['num_hard_test_questions']} hard. \n"+\
-                "avoid repeating any of these questions:" + str(questions_list)
+                "avoid repeating these exact questions, its ok to test the same concepts with different questions:" + str(questions_list)
             
             test_questions = json.loads(question_prompt_call(prompt, TestQuestionsSchema))
             print (colored(f"Test questions for subtopic: {subtopic}", "green"))
