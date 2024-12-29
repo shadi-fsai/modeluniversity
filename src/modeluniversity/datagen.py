@@ -158,7 +158,7 @@ def create_conversation(sample):
 
 def transform_to_trainable_json():
     setup_config()
-    with open("test_questions.json", "r") as file:
+    with open("training_questions.json", "r") as file:
         data = json.load(file)
         conversations = []
         for item in data:
