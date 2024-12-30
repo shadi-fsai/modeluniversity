@@ -25,8 +25,11 @@ llm_evals_list: # list of models to evaluate the tests on
   - "groq/Llama-3.3-70b-Versatile"
   - "groq/llama-3.2-1b-preview"
   - "ollama/hf.co/shadicopty/Llama3.2-1b-taxadvisor"
+  - "gpt-4o"
+  - "gpt-4o-mini"
+  - "gemini/gemini-1.5-flash"
 
 opik_dataset:  #change to the dataset you're looking to use
   Tax Advisor Dataset
 
-opik_eval_model: gpt-4o-mini 
+opik_eval_model: gpt-4o-mini   # any cheap model that handles json would do
