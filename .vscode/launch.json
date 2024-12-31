@@ -1,0 +1,49 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Generate Data",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "modeluniversity.datagen",
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "python": "${command:python.interpreterPath}",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}"
+            },
+            "purpose": [
+                "debug-in-terminal"
+            ]
+        },
+        {
+            "name": "Run Evaluations",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "modeluniversity.evals:main",
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "python": "${command:python.interpreterPath}",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}"
+            }
+        },
+        {
+            "name": "Transform to Trainable",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "modeluniversity.datagen",
+            "args": [
+                "transform_to_trainable_json"
+            ],
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}/src"
+            }
+        }
+    ]
+}
