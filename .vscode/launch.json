@@ -37,7 +37,11 @@
             "request": "launch",
             "module": "modeluniversity.datagen",
             "args": [
-                "transform_to_trainable_json"
+                "--transform",
+                "--training_questions_file",
+                "${workspaceFolder}/training_questions.json",
+                "--trainable_questions_file",
+                "${workspaceFolder}/trainable_data.json"
             ],
             "console": "integratedTerminal",
             "justMyCode": true,

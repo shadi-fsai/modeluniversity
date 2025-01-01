@@ -7,6 +7,8 @@ import json
 from pydantic import BaseModel
 from typing import List, Union
 from .config import settings
+from pathlib import Path
+import argparse
 
 
 class TopicSchema(BaseModel):
@@ -210,12 +212,15 @@ def create_conversation(sample):
     }
 
 
-def transform_to_trainable_json():
-    with open("training_questions.json", "r") as file:
+def transform_to_trainable_json(
+    training_questions_file: Path = Path("training_questions.json"),
+    trainable_questions_file: Path = Path("trainable_data.json"),
+):
+    with training_questions_file.open("r") as file:
         data = json.load(file)
         conversations = []
         for item in data:
-            item_json = json.loads(item)
+            item_json = json.loads(item) if not isinstance(item, dict) else item
             sample = {
                 "question": item_json["question"],
                 "answer": item_json["answer"],
@@ -224,9 +229,38 @@ def transform_to_trainable_json():
             conversation = create_conversation(sample)
             conversations.append(conversation)
 
-        with open("trainable_data.json", "w") as json_file:
+        with trainable_questions_file.open("w") as json_file:
             json.dump(conversations, json_file, indent=4)
 
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser(
+        description="Script entry point for curriculum generation and transformation."
+    )
+    parser.add_argument(
+        "--transform",
+        action="store_true",
+        help="Run the transform_to_trainable_json function instead of main().",
+    )
+    parser.add_argument(
+        "--training_questions_file",
+        type=Path,
+        default=Path("training_questions.json"),
+        help="Path to the training questions JSON file (default: training_questions.json).",
+    )
+    parser.add_argument(
+        "--trainable_questions_file",
+        type=Path,
+        default=Path("trainable_data.json"),
+        help="Path to the output trainable JSON file (default: trainable_data.json).",
+    )
+
+    args = parser.parse_args()
+
+    if args.transform:
+        transform_to_trainable_json(
+            training_questions_file=args.training_questions_file,
+            trainable_questions_file=args.trainable_questions_file,
+        )
+    else:
+        main()
