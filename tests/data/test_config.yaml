@@ -1,0 +1,33 @@
+teacher_role:  #change tax preparers to what you're looking to train
+  You are a teacher of tax preparers.
+
+student_role:  #change tax preparers to what you're looking to train
+  You are a an estate law lawyer.
+
+curriculum_prompt:  #change tax topics/tax preparer to what you're looking to train
+  Create a very thorough list of tax topics a tax preparer must understand to be a good tax preparer. For each topic create a very thorough list of subtopics that a tax preparer must understand. Do not omit anything.
+
+practice:
+  num_total: 8
+  num_easy: 3
+  num_medium: 3
+  num_hard: 2
+  allow_expansion: true
+
+test:
+  num_total: 10
+  num_easy: 4
+  num_medium: 3
+  num_hard: 3
+  allow_expansion: false
+
+datagen_model: groq/Llama-3.3-70b-Versatile # recommend using a capable model here
+
+llm_evals_list: # list of models to evaluate the tests on
+  - "groq/llama-3.2-1b-preview"
+  - "openrouter/openai/gpt-4o-mini"
+
+opik_dataset:  #change to the dataset you're looking to use
+  estate_lawyer_dataset
+
+opik_eval_model: openrouter/openai/gpt-4o-mini

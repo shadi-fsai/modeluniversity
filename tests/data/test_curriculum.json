@@ -1,0 +1,18 @@
+{
+    "topics": [
+        {
+            "topic": "Estate Planning Fundamentals",
+            "subtopics": [
+                "introduction to estate planning",
+                "importance of estate planning"
+            ]
+        },
+        {
+            "topic": "Wills and Trusts",
+            "subtopics": [
+                "last will and testament",
+                "revocable living trust"
+            ]
+        }
+    ]
+}
