@@ -23,7 +23,7 @@
             "name": "Run Evaluations",
             "type": "debugpy",
             "request": "launch",
-            "module": "modeluniversity.evals:main",
+            "module": "modeluniversity.evals",
             "console": "integratedTerminal",
             "justMyCode": false,
             "python": "${command:python.interpreterPath}",
