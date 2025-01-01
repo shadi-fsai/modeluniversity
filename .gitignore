@@ -169,4 +169,7 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+# Notes and scratchpad
+notes
 /db

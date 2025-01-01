@@ -2,7 +2,7 @@ teacher_role:  #change tax preparers to what you're looking to train
   You are a teacher of tax preparers.
 
 student_role:  #change tax preparers to what you're looking to train
-  You are a tax preparer.
+  You are a an estate law lawyer.
 
 curriculum_prompt:  #change tax topics/tax preparer to what you're looking to train
   Create a very thorough list of tax topics a tax preparer must understand to be a good tax preparer. For each topic create a very thorough list of subtopics that a tax preparer must understand. Do not omit anything.
@@ -23,21 +23,11 @@ test:
 
 datagen_model: groq/Llama-3.3-70b-Versatile # recommend using a capable model here
 
-llm_evals_list: # list of models to evaluate the tests on; using litellm model strings
-   - "groq/Llama-3.3-70b-Versatile"
-   - "bedrock/us.meta.llama3-2-1b-instruct-v1:0"
-   - "ollama/hf.co/shadicopty/Llama3.2-1b-taxadvisor"
-#  - "gemini/gemini-1.5-flash"
-#  - "gpt-4o"
-#  - "gpt-4o-mini"
-#  - "bedrock/us.meta.llama3-2-3b-instruct-v1:0"
-#  - "ollama/hf.co/shadicopty/Llama3.2-3b-taxadvisor"
-
+llm_evals_list: # list of models to evaluate the tests on
+  - "groq/llama-3.2-1b-preview"
+  - "openrouter/openai/gpt-4o-mini"
 
 opik_dataset:  #change to the dataset you're looking to use
-  Tax Advisor Dataset
+  estate_lawyer_dataset
 
-opik_eval_model: gpt-4o-mini   # any cheap model that handles json would do
-
-closed_textbook_eval: false  # evaluate the models without access to the textbook
-open_textbook_eval: true  # evaluate the models with access to the textbook
+opik_eval_model: openrouter/openai/gpt-4o-mini
