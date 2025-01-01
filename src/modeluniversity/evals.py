@@ -136,19 +136,36 @@ def evaluation_task_open(dataset_item):
     # your LLM application is called here
     input = dataset_item["question"]
     print(colored("Evaluating question: " + input, "green"))
-    (correct_choice, answer_choices) = create_answer_choices(dataset_item["answer"], dataset_item["wrong_answer1"], dataset_item["wrong_answer2"], dataset_item["wrong_answer3"])
-    precontext = config['student_role']
-    prompt = "What is the letter (A/B/C/D) describing the correct answer for the following multi-choice question:{" + input + "\n" + answer_choices + "\n } Provide the letter(A/B/C/D) followed by an explanation .\n" 
-    #prompt_textbook = question_prompt_call("If you had access to a search engine, What search query would you use to answer the following multi-choice question:" + answer_choices)
+    (correct_choice, answer_choices) = create_answer_choices(
+        dataset_item["answer"],
+        dataset_item["wrong_answer1"],
+        dataset_item["wrong_answer2"],
+        dataset_item["wrong_answer3"],
+    )
+    precontext = config["student_role"]
+    prompt = (
+        "What is the letter (A/B/C/D) describing the correct answer for the following multi-choice question:{"
+        + input
+        + "\n"
+        + answer_choices
+        + "\n } Provide the letter(A/B/C/D) followed by an explanation .\n"
+    )
+    # prompt_textbook = question_prompt_call("If you had access to a search engine, What search query would you use to answer the following multi-choice question:" + answer_choices)
     textbook_content = textbook.query([answer_choices], 5)
-    answer = question_prompt_call("The following is retrieved material to help you answer the question: \n\n" + str(textbook_content)+ "\n\n Your TASK:\n " + prompt)
+    answer = question_prompt_call(
+        "The following is retrieved material to help you answer the question: \n\n"
+        + str(textbook_content)
+        + "\n\n Your TASK:\n "
+        + prompt
+    )
     result = {
         "input": prompt,
         "output": answer,
         "context": [precontext, str(textbook_content)],
-        "reference": str(correct_choice)
+        "reference": str(correct_choice),
     }
     return result
+
 
 def evaluation_task_closed(dataset_item):
     # your LLM application is called here
@@ -184,7 +201,7 @@ def main():
     metrics = [SameFirstLetterMetric("Multiple-choice match")]
     global my_model
 
-    if (settings.closed_textbook_eval): 
+    if settings.closed_textbook_eval:
         for llm in settings.llm_evals_list:
             my_model = llm
             eval_results = evaluate(
@@ -192,10 +209,10 @@ def main():
                 dataset=dataset,
                 task=evaluation_task_closed,
                 scoring_metrics=metrics,
-                task_threads=4
+                task_threads=4,
             )
 
-    if (config.open_textbook_eval):
+    if settings.open_textbook_eval:
         global textbook
         textbook = OpenTextBook()
         for llm in settings.llm_evals_list:
@@ -205,10 +222,11 @@ def main():
                 dataset=dataset,
                 task=evaluation_task_open,
                 scoring_metrics=metrics,
-                task_threads=4
+                task_threads=4,
             )
-      
-    print (colored("Evaluation completed", "green"))
+
+    print(colored("Evaluation completed", "green"))
+
 
 if __name__ == "__main__":
     main()
