@@ -142,7 +142,7 @@ def evaluation_task_open(dataset_item):
         dataset_item["wrong_answer2"],
         dataset_item["wrong_answer3"],
     )
-    precontext = config["student_role"]
+    precontext = settings.student_role
     prompt = (
         "What is the letter (A/B/C/D) describing the correct answer for the following multi-choice question:{"
         + input
