@@ -1,7 +1,6 @@
 from time import sleep
 from litellm import completion
 from litellm import RateLimitError
-import yaml
 from termcolor import colored
 import json
 from pydantic import BaseModel
@@ -20,12 +19,23 @@ class CurriculumSchema(BaseModel):
     topics: List[TopicSchema]
 
 
-def generate_curriculum():
+def generate_curriculum(
+    curriculum_file_at: Path = Path("curriculum.json"),
+):
     try:
-        with open("curriculum.json", "r") as file:
+        with open(curriculum_file_at, "r") as file:
             curriculum = json.load(file)
-            print(colored("Loaded curriculum from curriculum.json", "green"))
+            print(colored(f"Loaded curriculum from {curriculum_file_at}", "green"))
     except FileNotFoundError:
+        print(
+            colored(
+                f"""File: 
+                {curriculum_file_at} 
+                not found for curriculum. 
+                Will attempt to create it.""",
+                "green",
+            )
+        )
 
         prompt = settings.curriculum_prompt
         response = completion(
@@ -41,7 +51,7 @@ def generate_curriculum():
 
         curriculum_str = response["choices"][0]["message"]["content"]
         curriculum = json.loads(curriculum_str)
-        with open("curriculum.json", "w") as file:
+        with open(curriculum_file_at, "w") as file:
             json.dump(curriculum, file, indent=4)
             print(colored("Saved curriculum to curriculum.json", "green"))
 
