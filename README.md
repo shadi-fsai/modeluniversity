@@ -1,4 +1,4 @@
-# Model university
+# ModelUni
 
 This project creates the training and testing/eval artifacts to train a small Llama model with.
 
