@@ -172,3 +172,4 @@ cython_debug/
 
 # Notes and scratchpad
 notes
+/db

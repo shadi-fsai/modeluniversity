@@ -23,15 +23,21 @@ test:
 
 datagen_model: groq/Llama-3.3-70b-Versatile # recommend using a capable model here
 
-llm_evals_list: # list of models to evaluate the tests on
-  - "groq/Llama-3.3-70b-Versatile"
-  - "groq/llama-3.2-1b-preview"
-  - "ollama/hf.co/shadicopty/Llama3.2-1b-taxadvisor"
-  - "gpt-4o"
-  - "gpt-4o-mini"
-  - "gemini/gemini-1.5-flash"
+llm_evals_list: # list of models to evaluate the tests on; using litellm model strings
+   - "groq/Llama-3.3-70b-Versatile"
+   - "bedrock/us.meta.llama3-2-1b-instruct-v1:0"
+   - "ollama/hf.co/shadicopty/Llama3.2-1b-taxadvisor"
+#  - "gemini/gemini-1.5-flash"
+#  - "gpt-4o"
+#  - "gpt-4o-mini"
+#  - "bedrock/us.meta.llama3-2-3b-instruct-v1:0"
+#  - "ollama/hf.co/shadicopty/Llama3.2-3b-taxadvisor"
+
 
 opik_dataset:  #change to the dataset you're looking to use
   Tax Advisor Dataset
 
 opik_eval_model: gpt-4o-mini   # any cheap model that handles json would do
+
+closed_textbook_eval: false  # evaluate the models without access to the textbook
+open_textbook_eval: true  # evaluate the models with access to the textbook
