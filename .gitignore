@@ -173,3 +173,8 @@ cython_debug/
 # Notes and scratchpad
 notes
 /db
+
+curriculum.json
+test_questions.json
+trainable_data.json
+training_questions.json
