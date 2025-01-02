@@ -150,7 +150,6 @@ def evaluation_task_open(dataset_item):
         + answer_choices
         + "\n } Provide the letter(A/B/C/D) followed by an explanation .\n"
     )
-    # prompt_textbook = question_prompt_call("If you had access to a search engine, What search query would you use to answer the following multi-choice question:" + answer_choices)
     textbook_content = textbook.query([answer_choices], 5)
     answer = question_prompt_call(
         "The following is retrieved material to help you answer the question: \n\n"

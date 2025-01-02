@@ -25,11 +25,12 @@ datagen_model: groq/Llama-3.3-70b-Versatile # recommend using a capable model he
 
 llm_evals_list: # list of models to evaluate the tests on; using litellm model strings
    - "groq/Llama-3.3-70b-Versatile"
-   - "bedrock/us.meta.llama3-2-1b-instruct-v1:0"
+   - "groq/llama-3.2-1b-preview"
    - "ollama/hf.co/shadicopty/Llama3.2-1b-taxadvisor"
 #  - "gemini/gemini-1.5-flash"
 #  - "gpt-4o"
 #  - "gpt-4o-mini"
+#  - "bedrock/us.meta.llama3-2-1b-instruct-v1:0"
 #  - "bedrock/us.meta.llama3-2-3b-instruct-v1:0"
 #  - "ollama/hf.co/shadicopty/Llama3.2-3b-taxadvisor"
 

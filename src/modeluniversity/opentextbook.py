@@ -13,6 +13,7 @@ class OpenTextBook:
         self._client = chromadb.PersistentClient("./db")
         try:
             self._collection = self._client.get_collection("textbook")
+            print (colored("Constructing Textbook DB", "green"))            
         except chromadb.errors.InvalidCollectionException:
             self._collection = self._client.get_or_create_collection("textbook")
 
