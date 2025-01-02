@@ -78,6 +78,7 @@ def setup(client):
                         "topic": item_json["topic"],
                         "subtopic": item_json["subtopic"],
                         "question": item_json["question"],
+                        "question_difficulty": item_json["question_difficulty"],
                         "answer": item_json["answer"],
                         "wrong_answer1": item_json["wrong_answer1"],
                         "wrong_answer2": item_json["wrong_answer2"],

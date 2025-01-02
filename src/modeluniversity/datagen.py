@@ -60,6 +60,7 @@ def generate_curriculum(
 
 class SingleQuestionSchema(BaseModel):
     question: str
+    question_difficulty: str # easy, medium, hard
     correct_answer: str
     explanation: str
 
@@ -70,6 +71,7 @@ class TrainQuestionsSchema(BaseModel):
 
 class MultiAnswerQuestionSchema(BaseModel):
     question: str
+    question_difficulty: str # easy, medium, hard
     correct_answer: str
     wrong_answer1: str
     wrong_answer2: str
@@ -107,9 +109,6 @@ def generate_questions(
     training_questions_file: str = "training_questions.json",
     testing_questions_file: str = "test_questions.json",
 ):
-
-    training_questions_bank = []
-    testing_questions_bank = []
 
     def create_base_prompt(questions_list_provided: Union[None, list] = None) -> str:
         purpose_is_practice: bool = questions_list_provided is None
@@ -162,6 +161,7 @@ def generate_questions(
                         "topic": topic["topic"],
                         "subtopic": subtopic,
                         "question": question["question"],
+                        "question_difficulty": question["question_difficulty"],
                         "answer": question["correct_answer"],
                         "explanation": question["explanation"],
                     }
@@ -187,6 +187,7 @@ def generate_questions(
                         "topic": topic["topic"],
                         "subtopic": subtopic,
                         "question": question["question"],
+                        "question_difficulty": question["question_difficulty"],
                         "answer": question["correct_answer"],
                         "wrong_answer1": question["wrong_answer1"],
                         "wrong_answer2": question["wrong_answer2"],
