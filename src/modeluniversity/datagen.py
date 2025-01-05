@@ -3,20 +3,15 @@ from litellm import completion
 from litellm import RateLimitError
 from termcolor import colored
 import json
-from pydantic import BaseModel
 from typing import List, Union
 from .config import settings
 from pathlib import Path
 import argparse
-
-
-class TopicSchema(BaseModel):
-    topic: str
-    subtopics: List[str]
-
-
-class CurriculumSchema(BaseModel):
-    topics: List[TopicSchema]
+from src.modeluniversity.datagen_models import (
+    CurriculumSchema,
+    TrainQuestionsSchema,
+    TestQuestionsSchema,
+)
 
 
 def generate_curriculum(
@@ -56,31 +51,6 @@ def generate_curriculum(
             print(colored("Saved curriculum to curriculum.json", "green"))
 
     return curriculum
-
-
-class SingleQuestionSchema(BaseModel):
-    question: str
-    question_difficulty: str # easy, medium, hard
-    correct_answer: str
-    explanation: str
-
-
-class TrainQuestionsSchema(BaseModel):
-    questions: List[SingleQuestionSchema]
-
-
-class MultiAnswerQuestionSchema(BaseModel):
-    question: str
-    question_difficulty: str # easy, medium, hard
-    correct_answer: str
-    wrong_answer1: str
-    wrong_answer2: str
-    wrong_answer3: str
-    explanation: str
-
-
-class TestQuestionsSchema(BaseModel):
-    questions: List[MultiAnswerQuestionSchema]
 
 
 def question_prompt_call(prompt, schema):
