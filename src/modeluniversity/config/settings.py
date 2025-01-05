@@ -80,6 +80,12 @@ class Settings(BaseSettings):
         env_file: Optional[str] = None,
         overrides: Dict[str, Any] = None,
     ) -> "Settings":
+
+        yaml_path = Path(yaml_file) if yaml_file else Path("config.yaml")
+
+        if not yaml_path.exists():
+            raise FileNotFoundError(f"YAML file not found at {yaml_path}")
+
         yaml_settings = {}
         if yaml_file and Path(yaml_file).exists():
             with open(yaml_file, "r") as f:
