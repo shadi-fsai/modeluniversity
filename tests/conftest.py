@@ -2,6 +2,7 @@ import pytest
 import shutil
 import json
 from pathlib import Path
+from datetime import datetime
 
 
 @pytest.fixture(scope="session")
@@ -32,6 +33,7 @@ def test_outputs_dir(test_data_dir):
     # Yield control back to the test session
     yield outputs_dir
 
-    # --- Teardown: remove it again after all tests complete
+    # --- Teardown: rename it with a timestamp after all tests complete
     if outputs_dir.exists():
-        shutil.rmtree(outputs_dir)
+        timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
+        outputs_dir.rename(test_data_dir / f"outputs_{timestamp}")
