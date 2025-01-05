@@ -1,5 +1,6 @@
 import json
 from pathlib import Path
+import pickle
 from src.modeluniversity.datagen import (
     transform_to_trainable_json,
     create_conversation,
@@ -119,8 +120,22 @@ def test_discover_existing_curriculum(the_curriculum_read_from_test_data_folder)
     )
 
 
-def test_generate_curriculum(a_curriculum_file_that_doesnt_exist):
+def test_generate_curriculum(
+    a_curriculum_file_that_doesnt_exist, mock_data_dir, monkeypatch
+):
     assert not a_curriculum_file_that_doesnt_exist.exists()
+
+    mock_curriculum_is_at = mock_data_dir / Path(
+        "mock_curriculum_generated_by_datagen.pickle"
+    )
+
+    def mock_curriculum(*args, **kwargs):
+        with open(mock_curriculum_is_at, "rb") as f:
+            loaded_data = pickle.load(f)
+        return loaded_data
+
+    # Mock the completion function in the litellm module
+    monkeypatch.setattr("src.modeluniversity.datagen.completion", mock_curriculum)
 
     curriculum_made_on_the_spot = generate_curriculum(
         a_curriculum_file_that_doesnt_exist

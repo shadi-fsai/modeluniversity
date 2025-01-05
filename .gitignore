@@ -180,3 +180,6 @@ trainable_data.json
 training_questions.json
 test_questions.json
 training_questions.json
+
+# Outputs of tests
+tests/data/outputs*/

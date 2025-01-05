@@ -48,7 +48,7 @@ def generate_curriculum(
         curriculum = json.loads(curriculum_str)
         with open(curriculum_file_at, "w") as file:
             json.dump(curriculum, file, indent=4)
-            print(colored("Saved curriculum to curriculum.json", "green"))
+            print(colored(f"Saved curriculum at {curriculum_file_at}", "green"))
 
     return curriculum
 
