@@ -6,6 +6,11 @@ from src.modeluniversity.datagen import (
     generate_curriculum,
     generate_questions,
 )
+from src.modeluniversity.datagen_models import (
+    CurriculumSchema,
+    TrainQuestionsSchema,
+    TestQuestionsSchema,
+)
 import pytest
 
 
@@ -27,8 +32,8 @@ def the_curriculum_read_from_test_data_folder(
     return pre_defined_curriculum
 
 
-def test_transform_to_trainable_json(test_outputs_dir):
-    # Create mock training questions in test outputs
+@pytest.fixture(scope="session")
+def some_training_questions():
     training_questions = [
         {
             "topic": "Estate Planning Fundamentals",
@@ -45,10 +50,16 @@ def test_transform_to_trainable_json(test_outputs_dir):
             "explanation": "The Uniform Probate Code (UPC) provides a standardized framework for probate and estate administration, making it easier to navigate the process and reducing the complexity of estate planning.",
         },
     ]
+    return training_questions
+
+
+def test_transform_to_trainable_json(test_outputs_dir, some_training_questions):
+    # Create mock training questions in test outputs
+
     training_file = test_outputs_dir / "training_questions.json"
     trainable_file = test_outputs_dir / "trainable_data.json"
     with training_file.open("w") as f:
-        json.dump(training_questions, f)
+        json.dump(some_training_questions, f)
 
     # Call the function
     transform_to_trainable_json(training_file, trainable_file)
@@ -71,7 +82,7 @@ def test_transform_to_trainable_json(test_outputs_dir):
 
     # Check that for each element of the training_questions list, the first element of the data list contains the question
     # That's included in the `data` list in the respective ["messages"] in the dict that contains "role": "assistant" and it's the value behind the "content" key
-    for q, question in enumerate(training_questions):
+    for q, question in enumerate(some_training_questions):
         target_trainable = data[q]
         dict_with_answer = [
             message
@@ -90,6 +101,7 @@ def test_create_conversation():
         "answer": "A programming language",
         "explanation": "Python is a versatile programming language.",
     }
+
     conversation = create_conversation(sample)
 
     assert conversation["messages"][0]["role"] == "system"
@@ -129,13 +141,36 @@ def test_generate_curriculum(a_curriculum_file_that_doesnt_exist):
     assert curriculum_data_from_written_file == curriculum_made_on_the_spot
 
 
+@pytest.fixture
+def mock_training_questions(mock_data_dir):
+    """Fixture to load mock training questions data."""
+    with open(mock_data_dir / "mock_training_questions.json") as f:
+        return json.load(f)
+
+
+@pytest.fixture
+def mock_test_questions(mock_data_dir):
+    """Fixture to load mock test questions data."""
+    with open(mock_data_dir / "mock_test_questions.json") as f:
+        return json.load(f)
+
+
 def test_generate_questions(
     the_curriculum_read_from_test_data_folder,
     test_outputs_dir,
-    # monkeypatch
+    mock_training_questions,
+    mock_test_questions,
+    monkeypatch,
 ):
-    # Monkeypatch the question prompt call
-    # monkeypatch.setattr("src.modeluniversity.datagen.", mock_question_prompt_call)
+
+    # the mock function
+    def mock_question_prompt_call(prompt, schema):
+        if schema == TrainQuestionsSchema:
+            return json.dumps(mock_training_questions)
+        elif schema == TestQuestionsSchema:
+            return json.dumps(mock_test_questions)
+        else:
+            return None
 
     # Set file paths for outputs
     training_file_for_tests = test_outputs_dir / "training_questions.json"
@@ -151,6 +186,11 @@ def test_generate_questions(
 
     test_curriculum_light = keep_first_element_only(
         the_curriculum_read_from_test_data_folder
+    )
+
+    # Use monkeypatch to replace the real `question_prompt_call` with the mock
+    monkeypatch.setattr(
+        "src.modeluniversity.datagen.question_prompt_call", mock_question_prompt_call
     )
 
     # Generate questions

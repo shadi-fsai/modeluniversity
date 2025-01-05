@@ -5,9 +5,15 @@ from pathlib import Path
 
 
 @pytest.fixture(scope="session")
-def test_data_dir():
+def test_data_dir() -> Path:
     """Fixture for the test data directory."""
     return Path(__file__).parent / "data"
+
+
+@pytest.fixture(scope="session")
+def mock_data_dir(test_data_dir) -> Path:
+    """Fixture for the test data directory."""
+    return test_data_dir / "mock_data"
 
 
 @pytest.fixture(scope="session", autouse=True)
