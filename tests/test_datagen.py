@@ -53,10 +53,12 @@ def some_training_questions():
     return training_questions
 
 
-def test_transform_to_trainable_json(test_outputs_dir, some_training_questions):
+def test_transform_to_trainable_json(
+    test_outputs_dir, mock_data_dir, some_training_questions
+):
     # Create mock training questions in test outputs
 
-    training_file = test_outputs_dir / "training_questions.json"
+    training_file = mock_data_dir / "mock_training_questions_produced_by_datagen.json"
     trainable_file = test_outputs_dir / "trainable_data.json"
     with training_file.open("w") as f:
         json.dump(some_training_questions, f)
