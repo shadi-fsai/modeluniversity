@@ -1,28 +1,114 @@
 # ModelUni
 
-This project creates the training and testing/eval artifacts to train a small Llama model with.
+ModelUni is a tool for generating synthetic training data and evaluating language models in educational contexts.
 
-It synthetically generates training and testing data using llama3.3 70B by creating a cirriculum and varying difficulty questions.
+This project creates training, testing, and evaluation artifacts to train a small Llama model. It synthetically generates training and testing data using llama3.3 70B by creating a curriculum and questions of varying difficulty.
 
-The test questions are multiple-choice, evals are done by asking the small model to pick the right answer and comparing for equality.
+Test questions are multiple-choice; evaluations compare the model’s chosen answer for equality.
 
 ## Installation
 
-You will need to add your groq keys to .env.
-You will also need your own api keys for Opik which serves as the evals system.
+1. Clone the repository
 
-To run start with 'poetry lock' / 'poetry install'
+2. Create your `.env` file by copying the `.env-example`:
+```bash
+cp .env-example .env
+```
+Then edit the `.env` file and replace the placeholder values with your actual API keys, for example:
+```
+GROQ_API_KEY=your_groq_key
+OPIK_API_KEY=your_opik_key
+```
 
-Edit config.yaml to choose the topic you want to train for, its currently set on tax preparation capabilities
+3. Install dependencies:
+```bash
+poetry lock
+poetry install
+```
 
-## Data generation and Evals
+4. Verify installation:
+```bash
+poetry run modeluni --help
+```
 
-1. 'poetry run datagen' generates the training/test data
+## CLI Usage and Workflow
 
-2. 'poetry run transform_to_trainable_json' prepares the data for unsloth training
+The CLI tool has three main commands that form the typical workflow:
 
-3. Use this to train your 3.2 1b model and push it to huggingface: https://colab.research.google.com/drive/12RH6ojAY_TFvQ02ZLvQdjFe944o0IIDQ
+1. Create a curriculum:
+```bash
+poetry run modeluni create-curriculum
+```
+This command generates a structured curriculum that defines topics and subtopics. By default, it tries to load from `curriculum.json` in the current directory. If the file doesn't exist, it creates a new curriculum based on the `curriculum_prompt` defined in your `config.yaml`. You can specify a custom path using the `--curriculum-file` option:
+```bash
+poetry run modeluni create-curriculum --curriculum-file custom/curriculum.json
+```
 
-4. Add your model to the list of evaluated llms in config.yaml; if you're running on ollama you'll want to download it to your desktop first (Ollama run hf.co/username/model)
+2. Generate questions based on the curriculum:
 
-5. 'poetry run evals' runs the evaluations
+After defining topics for the model, generate questions and answers for training and testing. Configure the `practice` and `test` parameters of your `config.yaml` to specify the number of questions, and set the `datagen_model` parameter to choose the model that creates them.
+
+The files with the questions will be written by default to the main repo folder, but you can change that:
+
+```bash
+# Default: Uses curriculum.json, outputs to training.json and testing.json
+poetry run modeluni create-questions
+
+# Example with custom paths:
+poetry run modeluni create-questions --curriculum-file custom/input.json --training-file custom/train.json --testing-file custom/test.json
+```
+
+3. Transform the data for training:
+
+Since you created a set of training questions, transform them into a format suitable for [this colab notebook](https://colab.research.google.com/drive/12RH6ojAY_TFvQ02ZLvQdjFe944o0IIDQ):
+
+```bash
+# Default: Uses training_questions.json, outputs to trainable_data.json
+poetry run modeluni transform-data
+
+# Example with custom paths:
+poetry run modeluni transform-data --training-file custom/train.json --output-file custom/final.json
+```
+
+4. Train
+
+Using the referenced [colab notebook](https://colab.research.google.com/drive/12RH6ojAY_TFvQ02ZLvQdjFe944o0IIDQ), load `trainable_data.json`:
+
+```bash
+dataset = load_dataset("json", data_files="trainable_data.json", split="train")
+```
+
+Then it will be used with:
+
+```bash
+trainer = SFTTrainer(
+    model=model,
+    tokenizer=tokenizer,
+    train_dataset=dataset,
+```
+
+to create your fine-tuned model based on the synthetic data.
+
+5. Evaluate your model:
+
+After fine-tuning, use `test_questions.json` to benchmark your model and others (the `llm_evals_list` in `config.yaml`) with a judge model (defined as `opik_eval_model` in `config.yaml`). Upload questions and answers to Opik, then monitor evaluation results.
+
+For example:
+```bash
+poetry run modeluni run-evals \
+     --evaluation-dataset-name my_test_questions \
+     --test-questions-file tests/data/test_questions.json
+```
+- This creates a new dataset (e.g., “from_cli”) in Opik, embeds your textbook for reference, then runs multiple-choice evaluations.
+- Check the Opik dashboard for logs and metrics (e.g., “Multiple-choice match” score).
+- Upon completion, results appear in the console.
+
+In your opik instance, you will see something like this (but with your fine-tune in the comparison):
+
+![Screenshot](docs/assets/evaluation_results.png)
+
+
+Optional: All commands accept `--help` for more details:
+```bash
+poetry run modeluni <command> --help
+```

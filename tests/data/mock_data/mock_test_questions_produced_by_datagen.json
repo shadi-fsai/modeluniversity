@@ -1,0 +1,178 @@
+[
+    {
+        "topic": "Estate Planning Fundamentals",
+        "subtopic": "introduction to estate planning",
+        "question": "What is the primary objective of estate planning?",
+        "question_difficulty": "easy",
+        "answer": "To ensure the efficient transfer of assets after death",
+        "wrong_answer1": "To minimize tax liabilities during lifetime",
+        "wrong_answer2": "To maximize wealth accumulation during lifetime",
+        "wrong_answer3": "To plan for retirement",
+        "explanation": "Estate planning is primarily concerned with ensuring that an individual's assets are transferred to their intended beneficiaries after death, while minimizing taxes and other expenses."
+    },
+    {
+        "topic": "Estate Planning Fundamentals",
+        "subtopic": "introduction to estate planning",
+        "question": "What is the main difference between a will and a trust?",
+        "question_difficulty": "easy",
+        "answer": "A will goes through probate, while a trust does not",
+        "wrong_answer1": "A will is used for tax planning, while a trust is used for asset protection",
+        "wrong_answer2": "A will is used for business succession planning, while a trust is used for charitable giving",
+        "wrong_answer3": "A will is used for retirement planning, while a trust is used for wealth accumulation",
+        "explanation": "A will is a document that goes through probate, while a trust is a separate entity that holds assets and is not subject to probate."
+    },
+    {
+        "topic": "Estate Planning Fundamentals",
+        "subtopic": "introduction to estate planning",
+        "question": "What is the purpose of a power of attorney?",
+        "question_difficulty": "medium",
+        "answer": "To grant authority to another person to make decisions on one's behalf",
+        "wrong_answer1": "To transfer assets to a trust",
+        "wrong_answer2": "To create a will",
+        "wrong_answer3": "To establish a guardianship",
+        "explanation": "A power of attorney is a document that grants authority to another person to make decisions on one's behalf, in the event of incapacitation or absence."
+    },
+    {
+        "topic": "Estate Planning Fundamentals",
+        "subtopic": "introduction to estate planning",
+        "question": "What is the difference between a general power of attorney and a special power of attorney?",
+        "question_difficulty": "medium",
+        "answer": "A general power of attorney grants broad authority, while a special power of attorney grants limited authority",
+        "wrong_answer1": "A general power of attorney is used for business purposes, while a special power of attorney is used for personal purposes",
+        "wrong_answer2": "A general power of attorney is used for tax planning, while a special power of attorney is used for estate planning",
+        "wrong_answer3": "A general power of attorney is used for retirement planning, while a special power of attorney is used for wealth accumulation",
+        "explanation": "A general power of attorney grants broad authority to the agent, while a special power of attorney grants limited authority for a specific purpose or transaction."
+    },
+    {
+        "topic": "Estate Planning Fundamentals",
+        "subtopic": "introduction to estate planning",
+        "question": "What is the purpose of a living trust?",
+        "question_difficulty": "hard",
+        "answer": "To avoid probate and ensure the efficient transfer of assets",
+        "wrong_answer1": "To minimize tax liabilities during lifetime",
+        "wrong_answer2": "To maximize wealth accumulation during lifetime",
+        "wrong_answer3": "To plan for retirement",
+        "explanation": "A living trust is a type of trust that is created during an individual's lifetime, and is used to avoid probate and ensure the efficient transfer of assets after death."
+    },
+    {
+        "topic": "Estate Planning Fundamentals",
+        "subtopic": "introduction to estate planning",
+        "question": "What is the difference between a revocable trust and an irrevocable trust?",
+        "question_difficulty": "hard",
+        "answer": "A revocable trust can be amended or terminated, while an irrevocable trust cannot",
+        "wrong_answer1": "A revocable trust is used for tax planning, while an irrevocable trust is used for estate planning",
+        "wrong_answer2": "A revocable trust is used for business succession planning, while an irrevocable trust is used for charitable giving",
+        "wrong_answer3": "A revocable trust is used for retirement planning, while an irrevocable trust is used for wealth accumulation",
+        "explanation": "A revocable trust can be amended or terminated by the grantor, while an irrevocable trust cannot be amended or terminated once it is created."
+    },
+    {
+        "topic": "Estate Planning Fundamentals",
+        "subtopic": "introduction to estate planning",
+        "question": "What is the purpose of a beneficiary designation?",
+        "question_difficulty": "easy",
+        "answer": "To designate who will receive assets after death",
+        "wrong_answer1": "To transfer assets to a trust",
+        "wrong_answer2": "To create a will",
+        "wrong_answer3": "To establish a guardianship",
+        "explanation": "A beneficiary designation is a document that designates who will receive assets, such as life insurance proceeds or retirement accounts, after death."
+    },
+    {
+        "topic": "Estate Planning Fundamentals",
+        "subtopic": "introduction to estate planning",
+        "question": "What is the difference between a beneficiary and an heir?",
+        "question_difficulty": "easy",
+        "answer": "A beneficiary is designated to receive assets, while an heir is entitled to receive assets under state law",
+        "wrong_answer1": "A beneficiary is used for tax planning, while an heir is used for estate planning",
+        "wrong_answer2": "A beneficiary is used for business succession planning, while an heir is used for charitable giving",
+        "wrong_answer3": "A beneficiary is used for retirement planning, while an heir is used for wealth accumulation",
+        "explanation": "A beneficiary is a person who is designated to receive assets, such as life insurance proceeds or retirement accounts, after death, while an heir is a person who is entitled to receive assets under state law, in the absence of a will or other estate planning document."
+    },
+    {
+        "topic": "Estate Planning Fundamentals",
+        "subtopic": "introduction to estate planning",
+        "question": "What is the purpose of a letter of intent?",
+        "question_difficulty": "medium",
+        "answer": "To provide guidance on the distribution of assets after death",
+        "wrong_answer1": "To transfer assets to a trust",
+        "wrong_answer2": "To create a will",
+        "wrong_answer3": "To establish a guardianship",
+        "explanation": "A letter of intent is a document that provides guidance on the distribution of assets after death, and can be used to provide context and explanation for the decisions made in an estate plan."
+    },
+    {
+        "topic": "Estate Planning Fundamentals",
+        "subtopic": "introduction to estate planning",
+        "question": "What is the difference between a guardianship and a conservatorship?",
+        "question_difficulty": "medium",
+        "answer": "A guardianship is used for minors or incapacitated persons, while a conservatorship is used for adults who are unable to manage their own affairs",
+        "wrong_answer1": "A guardianship is used for tax planning, while a conservatorship is used for estate planning",
+        "wrong_answer2": "A guardianship is used for business succession planning, while a conservatorship is used for charitable giving",
+        "wrong_answer3": "A guardianship is used for retirement planning, while a conservatorship is used for wealth accumulation",
+        "explanation": "A guardianship is a legal arrangement that is used to care for minors or incapacitated persons, while a conservatorship is a legal arrangement that is used to manage the affairs of an adult who is unable to manage their own affairs."
+    },
+    {
+        "topic": "Estate Planning Fundamentals",
+        "subtopic": "introduction to estate planning",
+        "question": "What is the purpose of a business succession plan?",
+        "question_difficulty": "hard",
+        "answer": "To ensure the continuation of a business after the death or retirement of the owner",
+        "wrong_answer1": "To minimize tax liabilities during lifetime",
+        "wrong_answer2": "To maximize wealth accumulation during lifetime",
+        "wrong_answer3": "To plan for retirement",
+        "explanation": "A business succession plan is a plan that is used to ensure the continuation of a business after the death or retirement of the owner, and can include strategies such as buy-sell agreements, cross-purchase agreements, and other arrangements."
+    },
+    {
+        "topic": "Estate Planning Fundamentals",
+        "subtopic": "introduction to estate planning",
+        "question": "What is the difference between a buy-sell agreement and a cross-purchase agreement?",
+        "question_difficulty": "hard",
+        "answer": "A buy-sell agreement is used to transfer ownership of a business, while a cross-purchase agreement is used to transfer ownership of a business and provide funding for the purchase",
+        "wrong_answer1": "A buy-sell agreement is used for tax planning, while a cross-purchase agreement is used for estate planning",
+        "wrong_answer2": "A buy-sell agreement is used for business succession planning, while a cross-purchase agreement is used for charitable giving",
+        "wrong_answer3": "A buy-sell agreement is used for retirement planning, while a cross-purchase agreement is used for wealth accumulation",
+        "explanation": "A buy-sell agreement is a contract that is used to transfer ownership of a business, while a cross-purchase agreement is a contract that is used to transfer ownership of a business and provide funding for the purchase, often through life insurance proceeds."
+    },
+    {
+        "topic": "Estate Planning Fundamentals",
+        "subtopic": "introduction to estate planning",
+        "question": "What is the purpose of a grantor retained annuity trust (GRAT)?",
+        "question_difficulty": "hard",
+        "answer": "To minimize tax liabilities and transfer wealth to future generations",
+        "wrong_answer1": "To maximize wealth accumulation during lifetime",
+        "wrong_answer2": "To plan for retirement",
+        "wrong_answer3": "To create a will",
+        "explanation": "A grantor retained annuity trust (GRAT) is a type of trust that is used to minimize tax liabilities and transfer wealth to future generations, by allowing the grantor to retain an annuity interest in the trust assets."
+    },
+    {
+        "topic": "Estate Planning Fundamentals",
+        "subtopic": "introduction to estate planning",
+        "question": "What is the difference between a qualified personal residence trust (QPRT) and a grantor retained annuity trust (GRAT)?",
+        "question_difficulty": "hard",
+        "answer": "A QPRT is used to transfer a personal residence, while a GRAT is used to transfer other assets",
+        "wrong_answer1": "A QPRT is used for tax planning, while a GRAT is used for estate planning",
+        "wrong_answer2": "A QPRT is used for business succession planning, while a GRAT is used for charitable giving",
+        "wrong_answer3": "A QPRT is used for retirement planning, while a GRAT is used for wealth accumulation",
+        "explanation": "A qualified personal residence trust (QPRT) is a type of trust that is used to transfer a personal residence, while a grantor retained annuity trust (GRAT) is a type of trust that is used to transfer other assets, such as investments or business interests."
+    },
+    {
+        "topic": "Estate Planning Fundamentals",
+        "subtopic": "introduction to estate planning",
+        "question": "What is the purpose of a charitable remainder trust (CRT)?",
+        "question_difficulty": "hard",
+        "answer": "To provide a charitable donation and a stream of income to the donor",
+        "wrong_answer1": "To minimize tax liabilities during lifetime",
+        "wrong_answer2": "To maximize wealth accumulation during lifetime",
+        "wrong_answer3": "To plan for retirement",
+        "explanation": "A charitable remainder trust (CRT) is a type of trust that is used to provide a charitable donation and a stream of income to the donor, by allowing the donor to transfer assets to the trust and receive a charitable deduction, while also providing a stream of income to the donor or other beneficiaries."
+    },
+    {
+        "topic": "Estate Planning Fundamentals",
+        "subtopic": "introduction to estate planning",
+        "question": "What is the difference between a charitable lead trust (CLT) and a charitable remainder trust (CRT)?",
+        "question_difficulty": "hard",
+        "answer": "A CLT provides a charitable donation first, while a CRT provides a stream of income to the donor first",
+        "wrong_answer1": "A CLT is used for tax planning, while a CRT is used for estate planning",
+        "wrong_answer2": "A CLT is used for business succession planning, while a CRT is used for charitable giving",
+        "wrong_answer3": "A CLT is used for retirement planning, while a CRT is used for wealth accumulation",
+        "explanation": "A charitable lead trust (CLT) is a type of trust that is used to provide a charitable donation first, while a charitable remainder trust (CRT) is a type of trust that is used to provide a stream of income to the donor or other beneficiaries first, and then provide a charitable donation."
+    }
+]

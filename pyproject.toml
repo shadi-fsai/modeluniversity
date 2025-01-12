@@ -19,6 +19,7 @@ pytest = "^7.4.2"  # Add pytest for testing
 pytest-mock = "^3.11.1"  # For mocking in tests
 
 [tool.poetry.scripts]
+modeluni = "modeluniversity.cli:cli"
 datagen = "modeluniversity.datagen:main"
 evals = "modeluniversity.evals:main"
 transform_to_trainable_json = "modeluniversity.datagen:transform_to_trainable_json"

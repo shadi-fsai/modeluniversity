@@ -1,0 +1,124 @@
+{
+    "questions": [
+        {
+            "question": "What is estate planning?",
+            "question_difficulty": "Easy",
+            "correct_answer": "The process of managing and distributing a person's assets after their death",
+            "explanation": "Estate planning is the process of managing and distributing a person's assets after their death, and it involves creating a plan to ensure that their wishes are carried out."
+        },
+        {
+            "question": "What is the main goal of estate planning?",
+            "question_difficulty": "Easy",
+            "correct_answer": "To ensure that a person's assets are distributed according to their wishes after their death",
+            "explanation": "The main goal of estate planning is to ensure that a person's assets are distributed according to their wishes after their death, and to minimize taxes and other expenses."
+        },
+        {
+            "question": "What is a will?",
+            "question_difficulty": "Easy",
+            "correct_answer": "A legal document that outlines how a person's assets will be distributed after their death",
+            "explanation": "A will is a legal document that outlines how a person's assets will be distributed after their death, and it is an essential part of estate planning."
+        },
+        {
+            "question": "What is a trust?",
+            "question_difficulty": "Easy",
+            "correct_answer": "A legal arrangement that allows a person to manage and distribute assets on behalf of another person",
+            "explanation": "A trust is a legal arrangement that allows a person to manage and distribute assets on behalf of another person, and it is often used in estate planning to minimize taxes and other expenses."
+        },
+        {
+            "question": "What is probate?",
+            "question_difficulty": "Easy",
+            "correct_answer": "The legal process of settling a person's estate after their death",
+            "explanation": "Probate is the legal process of settling a person's estate after their death, and it involves validating their will, paying off debts, and distributing assets to beneficiaries."
+        },
+        {
+            "question": "What is the difference between a living will and a last will and testament?",
+            "question_difficulty": "Easy",
+            "correct_answer": "A living will outlines a person's wishes for medical treatment if they become incapacitated, while a last will and testament outlines how their assets will be distributed after their death",
+            "explanation": "A living will outlines a person's wishes for medical treatment if they become incapacitated, while a last will and testament outlines how their assets will be distributed after their death."
+        },
+        {
+            "question": "What is the purpose of a power of attorney?",
+            "question_difficulty": "Easy",
+            "correct_answer": "To give someone the authority to make financial and medical decisions on behalf of another person",
+            "explanation": "The purpose of a power of attorney is to give someone the authority to make financial and medical decisions on behalf of another person, in the event that they become incapacitated."
+        },
+        {
+            "question": "What is the difference between a general power of attorney and a special power of attorney?",
+            "question_difficulty": "Easy",
+            "correct_answer": "A general power of attorney gives someone broad authority to make decisions, while a special power of attorney gives someone limited authority to make decisions in a specific area",
+            "explanation": "A general power of attorney gives someone broad authority to make decisions, while a special power of attorney gives someone limited authority to make decisions in a specific area."
+        },
+        {
+            "question": "What is the purpose of a living trust?",
+            "question_difficulty": "Easy",
+            "correct_answer": "To avoid probate and minimize taxes by transferring assets into a trust during a person's lifetime",
+            "explanation": "The purpose of a living trust is to avoid probate and minimize taxes by transferring assets into a trust during a person's lifetime, and it is often used in estate planning to ensure that assets are distributed according to a person's wishes."
+        },
+        {
+            "question": "What is the difference between a revocable trust and an irrevocable trust?",
+            "question_difficulty": "Easy",
+            "correct_answer": "A revocable trust can be changed or terminated during a person's lifetime, while an irrevocable trust cannot be changed or terminated once it is created",
+            "explanation": "A revocable trust can be changed or terminated during a person's lifetime, while an irrevocable trust cannot be changed or terminated once it is created, and it is often used in estate planning to minimize taxes and other expenses."
+        },
+        {
+            "question": "What is the purpose of a beneficiary designation?",
+            "question_difficulty": "Medium",
+            "correct_answer": "To designate who will receive certain assets, such as life insurance proceeds or retirement accounts, after a person's death",
+            "explanation": "The purpose of a beneficiary designation is to designate who will receive certain assets, such as life insurance proceeds or retirement accounts, after a person's death, and it is an important part of estate planning."
+        },
+        {
+            "question": "What is the difference between a beneficiary and an heir?",
+            "question_difficulty": "Medium",
+            "correct_answer": "A beneficiary is someone who is designated to receive certain assets after a person's death, while an heir is someone who is entitled to receive assets under state law if there is no will or other estate plan in place",
+            "explanation": "A beneficiary is someone who is designated to receive certain assets after a person's death, while an heir is someone who is entitled to receive assets under state law if there is no will or other estate plan in place."
+        },
+        {
+            "question": "What is the purpose of a letter of intent?",
+            "question_difficulty": "Medium",
+            "correct_answer": "To provide guidance to the executor of a person's estate and to outline their wishes for the distribution of assets",
+            "explanation": "The purpose of a letter of intent is to provide guidance to the executor of a person's estate and to outline their wishes for the distribution of assets, and it is often used in conjunction with a will or trust."
+        },
+        {
+            "question": "What is the difference between a guardianship and a conservatorship?",
+            "question_difficulty": "Medium",
+            "correct_answer": "A guardianship gives someone authority to make personal decisions for another person, while a conservatorship gives someone authority to manage another person's financial affairs",
+            "explanation": "A guardianship gives someone authority to make personal decisions for another person, while a conservatorship gives someone authority to manage another person's financial affairs, and both are often used in estate planning to protect the interests of minors or incapacitated adults."
+        },
+        {
+            "question": "What is the purpose of a business succession plan?",
+            "question_difficulty": "Medium",
+            "correct_answer": "To ensure the continuation of a business after the death or retirement of the owner",
+            "explanation": "The purpose of a business succession plan is to ensure the continuation of a business after the death or retirement of the owner, and it is an important part of estate planning for business owners."
+        },
+        {
+            "question": "What is the difference between a buy-sell agreement and a cross-purchase agreement?",
+            "question_difficulty": "Hard",
+            "correct_answer": "A buy-sell agreement is a contract between business owners that outlines how the business will be transferred if one of the owners dies or leaves the business, while a cross-purchase agreement is a type of buy-sell agreement that requires the remaining owners to purchase the departing owner's shares",
+            "explanation": "A buy-sell agreement is a contract between business owners that outlines how the business will be transferred if one of the owners dies or leaves the business, while a cross-purchase agreement is a type of buy-sell agreement that requires the remaining owners to purchase the departing owner's shares, and both are often used in estate planning to ensure the continuation of a business."
+        },
+        {
+            "question": "What is the purpose of a grantor retained annuity trust (GRAT)?",
+            "question_difficulty": "Hard",
+            "correct_answer": "To minimize taxes by transferring assets to a trust while retaining an annuity interest",
+            "explanation": "The purpose of a grantor retained annuity trust (GRAT) is to minimize taxes by transferring assets to a trust while retaining an annuity interest, and it is often used in estate planning to transfer wealth to future generations."
+        },
+        {
+            "question": "What is the difference between a qualified personal residence trust (QPRT) and a grantor retained annuity trust (GRAT)?",
+            "question_difficulty": "Hard",
+            "correct_answer": "A QPRT is a type of trust that allows a person to transfer their primary residence to a trust while retaining the right to live in the residence for a certain period of time, while a GRAT is a type of trust that allows a person to transfer assets to a trust while retaining an annuity interest",
+            "explanation": "A QPRT is a type of trust that allows a person to transfer their primary residence to a trust while retaining the right to live in the residence for a certain period of time, while a GRAT is a type of trust that allows a person to transfer assets to a trust while retaining an annuity interest, and both are often used in estate planning to minimize taxes and transfer wealth to future generations."
+        },
+        {
+            "question": "What is the purpose of a charitable remainder trust (CRT)?",
+            "question_difficulty": "Hard",
+            "correct_answer": "To provide a charitable donation while also providing income to the donor or their beneficiaries",
+            "explanation": "The purpose of a charitable remainder trust (CRT) is to provide a charitable donation while also providing income to the donor or their beneficiaries, and it is often used in estate planning to minimize taxes and support philanthropic goals."
+        },
+        {
+            "question": "What is the difference between a charitable lead trust (CLT) and a charitable remainder trust (CRT)?",
+            "question_difficulty": "Hard",
+            "correct_answer": "A CLT provides a charitable donation for a certain period of time, after which the assets are transferred to the donor's beneficiaries, while a CRT provides income to the donor or their beneficiaries for a certain period of time, after which the assets are transferred to a charity",
+            "explanation": "A CLT provides a charitable donation for a certain period of time, after which the assets are transferred to the donor's beneficiaries, while a CRT provides income to the donor or their beneficiaries for a certain period of time, after which the assets are transferred to a charity, and both are often used in estate planning to support philanthropic goals and minimize taxes."
+        }
+    ]
+}
