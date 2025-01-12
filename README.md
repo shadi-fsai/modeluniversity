@@ -103,6 +103,11 @@ poetry run modeluni run-evals \
 - Check the Opik dashboard for logs and metrics (e.g., “Multiple-choice match” score).
 - Upon completion, results appear in the console.
 
+In your opik instance, you will see something like this (but with your fine-tune in the comparison):
+
+![Screenshot](docs/assets/evaluation_results.png)
+
+
 Optional: All commands accept `--help` for more details:
 ```bash
 poetry run modeluni <command> --help
