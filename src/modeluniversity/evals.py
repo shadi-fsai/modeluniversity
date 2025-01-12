@@ -185,7 +185,7 @@ def run_the_evaluation(
 
     if use_textbook:
         # Create the textbook instance
-        textbook = create_textbook_instance()
+        textbook = create_textbook_instance(file_with_questions=test_questions_location)
         # Wrap `evaluation_task_open` so it only requires `dataset_item`
         base_task_function = evaluation_task_open
     else:

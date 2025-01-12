@@ -1,5 +1,7 @@
 import json
+import logging
 from pathlib import Path
+from typing import Union
 
 import chromadb
 from langchain_text_splitters import RecursiveCharacterTextSplitter
@@ -25,6 +27,11 @@ class OpenTextBook:
     ):
         self._client = chromadb.PersistentClient(path="./db")
         self.file_with_questions = file_with_questions
+        if not self.file_with_questions.exists():
+            raise FileNotFoundError(
+                f"Training questions file {self.file_with_questions} does not exist"
+            )
+        logging.info(f"file_with_questions for textbook : {self.file_with_questions}")
         self.collections_name = collections_name
 
         try:
@@ -47,6 +54,7 @@ class OpenTextBook:
         try:
             with open(self.file_with_questions, "r") as file:
                 training_questions = json.load(file)
+                logging.info(f"Loaded {len(training_questions)} training questions")
 
                 for entry in training_questions:
                     if isinstance(entry, str):
@@ -56,6 +64,7 @@ class OpenTextBook:
                         f"The answer to the following question '{entry['question']}' is {entry['answer']}."
                         f"{entry['explanation']}"
                     )
+                    logging.debug(f"upserting content: {content}")
                     self.add_content(
                         content,
                         {"topic": entry["topic"], "subtopic": entry["subtopic"]},
@@ -100,7 +109,7 @@ class OpenTextBook:
             return []
 
 
-def create_textbook_instance():
+def create_textbook_instance(**kwargs):
     use_custom_embeddings = (
         os.getenv("USE_CUSTOM_EMBEDDINGS", "false").lower() == "true"
     )
@@ -122,4 +131,4 @@ def create_textbook_instance():
         print("Using default embeddings instead of Ollama")
         embedding_function = None
 
-    return OpenTextBook(embedding_function=embedding_function)
+    return OpenTextBook(embedding_function=embedding_function, **kwargs)
