@@ -34,13 +34,22 @@ def test_run_the_eval_with_textbook(
     location_of_questions_for_test_session,
     use_textbook,
 ):
+
+    dataset_name_to_create = f"testing_eval_of_modeluni"
+
     eval_results = run_the_evaluation(
         an_opik_client=opik_client_for_test_session,
         metrics=metrics_for_test_session,
         llm_evals_list=list_of_llms_to_judge,
         test_questions_location=location_of_questions_for_test_session,
         use_textbook=use_textbook,
+        evaluation_dataset_name=dataset_name_to_create,
     )
-    assert eval_results is not None
-    # TODO: What will we be checking?!
-    assert ...
+    assert eval_results is not None, "Results are None. Function failed to run"
+
+    assert eval_results.keys() == set(
+        list_of_llms_to_judge
+    ), "Results are not as many as the models to evaluate"
+
+    # TODO: What else will we be checking?!
+    # assert ...

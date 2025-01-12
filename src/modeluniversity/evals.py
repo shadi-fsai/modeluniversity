@@ -1,4 +1,5 @@
 import json
+import logging
 from pathlib import Path
 from time import sleep
 import opik
@@ -15,9 +16,18 @@ from .config import settings
 import random
 
 
-def setup(client, test_questions_location: Path = Path("test_questions.json")):
+def setup(
+    client,
+    dataset_name: str,
+    test_questions_location: Path = Path("test_questions.json"),
+):
+    if not dataset_name:
+        logging.warning(
+            "No dataset name provided. Will use the one from the settings: {settings.opik_dataset}"
+        )
+        dataset_name = settings.opik_dataset
     # Create a dataset
-    dataset = client.get_or_create_dataset(name=settings.opik_dataset)
+    dataset = client.get_or_create_dataset(name=dataset_name)
     # Load the json file test_questions.json
     # Upload each [topic,subtopic,question,answer] to the dataset
     with open(test_questions_location, "r") as file:
@@ -162,8 +172,13 @@ def run_the_evaluation(
     use_textbook: bool,
     test_questions_location: Path = Path("test_questions.json"),
     number_of_task_threads=4,
+    evaluation_dataset_name: str = None,
 ):
-    dataset = setup(an_opik_client, test_questions_location)
+    dataset = setup(
+        client=an_opik_client,
+        dataset_name=evaluation_dataset_name,
+        test_questions_location=test_questions_location,
+    )
     accompanying_comment = (
         "my_evaluation-open: " if use_textbook else "my_evaluation-closed: "
     )
