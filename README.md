@@ -1,10 +1,10 @@
 # ModelUni
 
-This project creates the training and testing/eval artifacts to train a small Llama model with.
+ModelUni is a tool for generating synthetic training data and evaluating language models in educational contexts.
 
-It synthetically generates training and testing data using llama3.3 70B by creating a curriculum and varying difficulty questions.
+This project creates training, testing, and evaluation artifacts to train a small Llama model. It synthetically generates training and testing data using llama3.3 70B by creating a curriculum and questions of varying difficulty.
 
-The test questions are multiple-choice, evals are done by asking the small model to pick the right answer and comparing for equality.
+Test questions are multiple-choice; evaluations compare the model’s chosen answer for equality.
 
 ## Installation
 
@@ -14,7 +14,7 @@ The test questions are multiple-choice, evals are done by asking the small model
 ```bash
 cp .env-example .env
 ```
-Then edit the `.env` file and replace the placeholder values with your actual API keys, like for example:
+Then edit the `.env` file and replace the placeholder values with your actual API keys, for example:
 ```
 GROQ_API_KEY=your_groq_key
 OPIK_API_KEY=your_opik_key
@@ -46,12 +46,9 @@ poetry run modeluni create-curriculum --curriculum-file custom/curriculum.json
 
 2. Generate questions based on the curriculum:
 
-After we have clearly defined the topics on which we want to train a model, we need to create questions and answers both to train it and to test it.
+After defining topics for the model, generate questions and answers for training and testing. Configure the `practice` and `test` parameters of your `config.yaml` to specify the number of questions, and set the `datagen_model` parameter to choose the model that creates them.
 
-To define the number of training and testing questions we want to generate we need to configure the `practice` and `test` parameters of our `config.yaml`.
-The model selected to generate all these is defined by the `datagen_model` parameter of our `config.yaml`.
-
-The files with the questions will be written by default in the main repo folder. We can define otherwise though:
+The files with the questions will be written by default to the main repo folder, but you can change that:
 
 ```bash
 # Default: Uses curriculum.json, outputs to training.json and testing.json
@@ -63,7 +60,7 @@ poetry run modeluni create-questions --curriculum-file custom/input.json --train
 
 3. Transform the data for training:
 
-Since we created a set of training questions, we only need to transform them in a format, specifically for [this colab notebook](https://colab.research.google.com/drive/12RH6ojAY_TFvQ02ZLvQdjFe944o0IIDQ) that's utilizing colab's computing power and unsloth's utilities for fine tuning:
+Since you created a set of training questions, transform them into a format suitable for [this colab notebook](https://colab.research.google.com/drive/12RH6ojAY_TFvQ02ZLvQdjFe944o0IIDQ):
 
 ```bash
 # Default: Uses training_questions.json, outputs to trainable_data.json
@@ -73,45 +70,40 @@ poetry run modeluni transform-data
 poetry run modeluni transform-data --training-file custom/train.json --output-file custom/final.json
 ```
 
-4. Train 
+4. Train
 
-Using the abovementioned [colab notebook](https://colab.research.google.com/drive/12RH6ojAY_TFvQ02ZLvQdjFe944o0IIDQ),  you pretty much throw your `trainable_data.json` and it will find your own data when running this line:
+Using the referenced [colab notebook](https://colab.research.google.com/drive/12RH6ojAY_TFvQ02ZLvQdjFe944o0IIDQ), load `trainable_data.json`:
 
 ```bash
-dataset = load_dataset("json", data_files="trainable_data.json", split = "train")
+dataset = load_dataset("json", data_files="trainable_data.json", split="train")
 ```
 
-Where it will be used later at this part:
+Then it will be used with:
 
 ```bash
 trainer = SFTTrainer(
-    model = model,
-    tokenizer = tokenizer,
-    train_dataset = dataset,
+    model=model,
+    tokenizer=tokenizer,
+    train_dataset=dataset,
 ```
 
-To create your own fine-tune, based on the synthetic data you just created.
+to create your fine-tuned model based on the synthetic data.
 
 5. Evaluate your model:
 
-After you have your fine-tuned model ready, you want to make sure you did a good job on it.
+After fine-tuning, use `test_questions.json` to benchmark your model and others (the `llm_evals_list` in `config.yaml`) with a judge model (defined as `opik_eval_model` in `config.yaml`). Upload questions and answers to Opik, then monitor evaluation results.
 
-You already have the `test_questions.json` (generated on the data generation stage, where you specified the  `--testing-file` to be, otherwise in your main repo's folder) that will help you benchmark your model against various other models (the `llm_evals_list` of your `config.yaml`) with a judge model that you will also define in the `config.yaml` (the `opik_eval_model`).
+For example:
+```bash
+poetry run modeluni run-evals \
+     --evaluation-dataset-name my_test_questions \
+     --test-questions-file tests/data/test_questions.json
+```
+- This creates a new dataset (e.g., “from_cli”) in Opik, embeds your textbook for reference, then runs multiple-choice evaluations.
+- Check the Opik dashboard for logs and metrics (e.g., “Multiple-choice match” score).
+- Upon completion, results appear in the console.
 
-To be able to achieve this, you need to upload the questions (with their answers) on opik and monitor the results of the evaluations.
-
-You can achieve this with a command like this:
-
-    ```bash
-    poetry run modeluni run-evals \
-         --evaluation-dataset-name my_test_questions \
-         --test-questions-file tests/data/test_questions.json
-    ```
-    - This creates a new dataset (e.g., "from_cli") in Opik, embeds your textbook for reference, and runs multiple-choice evaluations.
-    - Check the Opik dashboard for detailed logs and metrics such as the "Multiple-choice match" score.
-    - Upon completion, the console shows final results (e.g., "Evaluation completed. Results: [...]").
-
-Optional: All commands accept the `--help` flag for detailed usage information:
+Optional: All commands accept `--help` for more details:
 ```bash
 poetry run modeluni <command> --help
 ```
