@@ -45,6 +45,14 @@ poetry run modeluni create-curriculum --curriculum-file custom/curriculum.json
 ```
 
 2. Generate questions based on the curriculum:
+
+After we have clearly defined the topics on which we want to train a model, we need to create questions and answers both to train it and to test it.
+
+To define the number of training and testing questions we want to generate we need to configure the `practice` and `test` parameters of our `config.yaml`.
+The model selected to generate all these is defined by the `datagen_model` parameter of our `config.yaml`.
+
+The files with the questions will be written by default in the main repo folder. We can define otherwise though:
+
 ```bash
 # Default: Uses curriculum.json, outputs to training.json and testing.json
 poetry run modeluni create-questions
@@ -54,6 +62,9 @@ poetry run modeluni create-questions --curriculum-file custom/input.json --train
 ```
 
 3. Transform the data for training:
+
+Since we created a set of training questions, we only need to transform them in a format, specifically for [this colab notebook](https://colab.research.google.com/drive/12RH6ojAY_TFvQ02ZLvQdjFe944o0IIDQ) that's utilizing colab's computing power and unsloth's utilities for fine tuning:
+
 ```bash
 # Default: Uses training_questions.json, outputs to trainable_data.json
 poetry run modeluni transform-data
@@ -62,11 +73,9 @@ poetry run modeluni transform-data
 poetry run modeluni transform-data --training-file custom/train.json --output-file custom/final.json
 ```
 
-This transforms the questions into a format suitable for fine-tuning, specifically for [this colab notebook](https://colab.research.google.com/drive/12RH6ojAY_TFvQ02ZLvQdjFe944o0IIDQ).
-
 4. Train 
 
-Using the abovementioned [colab notebook](https://colab.research.google.com/drive/12RH6ojAY_TFvQ02ZLvQdjFe944o0IIDQ) where you pretty much throw your `trainable_data.json` and it will find your own data when running this line:
+Using the abovementioned [colab notebook](https://colab.research.google.com/drive/12RH6ojAY_TFvQ02ZLvQdjFe944o0IIDQ),  you pretty much throw your `trainable_data.json` and it will find your own data when running this line:
 
 ```bash
 dataset = load_dataset("json", data_files="trainable_data.json", split = "train")
