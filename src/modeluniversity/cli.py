@@ -1,5 +1,9 @@
 import click
 from pathlib import Path
+from .evals import run_the_evaluation
+from opik import Opik
+from src.modeluniversity.evals_models import SameFirstLetterMetric
+from src.modeluniversity.config import settings
 
 from .datagen import (
     generate_curriculum,
@@ -82,6 +86,49 @@ def transform_data(training_file, output_file):
         trainable_questions_file=Path(output_file),
     )
     click.echo(f"Data transformed and saved to {output_file}")
+
+
+@cli.command()
+@click.option(
+    "--evaluation-dataset-name",
+    default=None,
+    help="Name of the evaluation dataset saved on opik.",
+)
+@click.option(
+    "--test-questions-file",
+    type=click.Path(),
+    default="test_questions.json",
+    help="Path to the test questions file.",
+)
+@click.option(
+    "--use-textbook",
+    is_flag=True,
+    default=False,
+    help="""
+    Include textbook context in evaluation. 
+    As textbook is actually a mechanism to provide context to the model by 
+    transforming the training questions to embeddings 
+    and retrieving from them during the test process.
+    Defaults to False.
+    """,
+)
+def run_evals(evaluation_dataset_name, test_questions_file, use_textbook):
+    """
+    Run the evaluation process on a given set of questions and models.
+    """
+
+    client = Opik()
+    metrics = [SameFirstLetterMetric("Multiple-choice match")]
+
+    results = run_the_evaluation(
+        an_opik_client=client,
+        metrics=metrics,
+        llm_evals_list=settings.llm_evals_list,
+        test_questions_location=Path(test_questions_file),
+        use_textbook=use_textbook,
+        evaluation_dataset_name=evaluation_dataset_name,
+    )
+    click.echo(f"Evaluation completed. Results: {list(results.keys())}")
 
 
 if __name__ == "__main__":
